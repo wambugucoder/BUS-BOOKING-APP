@@ -4,7 +4,7 @@
 * Redis -
 * Paypal integration -
 * Passport jwt -
-* An invoice system
-* Prisma
+* An invoice system-
+* Prisma -
 
 ~Day 1 - Create the server part only~
