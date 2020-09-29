@@ -7,4 +7,5 @@
 * An invoice system-
 * Prisma -
 
-~Day 1 - Create the server part only~
+~Day 1 - create server and setup stuff -- done~
+~Day 2 -Start first phase of routing --validation~
