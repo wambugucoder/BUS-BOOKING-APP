@@ -3,7 +3,7 @@
     "extends": [
         "tslint:recommended",
         "tslint-config-standard",
-        "tslint-config-airbnb"
+       // "tslint-config-airbnb"
     ],
     "jsRules": {},
     "rules": {},
