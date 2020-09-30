@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
+// tslint:disable-next-line:import-name
+import userRoutes from './routes';
 
 dotenv.config();
 const app: express.Application = express();
@@ -23,6 +25,9 @@ app.use(cors());
 
 // HELMET
 app.use(helmet());
+
+// ROUTES MIDDLEWARE
+app.use('/api/v1', userRoutes);
 
 // LISTENING PORT
 

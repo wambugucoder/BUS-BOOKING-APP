@@ -1,5 +1,6 @@
-import { IsDefined, IsEmail, Length } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsDefined, IsEmail, Length, ValidateNested } from 'class-validator';
 import { Match } from '../custom/match.decorator';
+import { Address } from './Address';
 
 export class Register {
 
@@ -17,8 +18,5 @@ export class Register {
 
   @Match('password', { message:  'Passwords do not match' })
   confirmpassword!: string;
-
-  @IsDefined({ each:true, message:'All address fields needs to be defined' })
-  address!: string[];
 
 }
