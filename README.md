@@ -15,3 +15,5 @@
 
 
 day 3 - did some fixing and launched my register route
+
+includes 3 stages
