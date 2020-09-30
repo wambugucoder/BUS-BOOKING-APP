@@ -26,7 +26,7 @@ export const registerUser = async (req: Request, res: Response) => {
       })
           .then((register) => {
             if (register) {
-              return res.status(200).json(register);
+              return res.status(201).json(register);
             }
             return res.status(400).json({ message:'Please check your inputs again' });
           })

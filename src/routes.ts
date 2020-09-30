@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { registerUser } from './controller/AuthController';
-import { validateAddress, validateRegistration } from './controller/validationController';
+import { checkIfEmailExists, validateAddress, validateRegistration } from './controller/validationController';
 
 const router = express.Router();
 
@@ -9,8 +9,9 @@ const router = express.Router();
 /*
 Stage 1 - validate core details,
 Stage 2 - validate address fields,
-Stage 3  - if stage 1 & 2 =success =>encrypt password and register user
+Stage 3 - check if email exists
+Stage 4  - if stage 1 ,2 & 3 ===success =>encrypt password and register user
  */
-router.post('/register', validateRegistration, validateAddress , registerUser);
+router.post('/register', validateRegistration, validateAddress , checkIfEmailExists, registerUser);
 
 export default router;
