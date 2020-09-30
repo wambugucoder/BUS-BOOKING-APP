@@ -17,3 +17,6 @@
 day 3 - did some fixing and launched my register route
 
 includes 3 stages
+
+
+stage 1 -validate core fields
