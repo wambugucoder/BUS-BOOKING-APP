@@ -23,5 +23,4 @@ stage 1 -validate core fields
 
 stage 2 -validate address fields 
 
-
-wait for it
+stage 3 -register users with clean credentials
