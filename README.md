@@ -14,7 +14,7 @@
 ~Day 2 -Start first phase of routing -- Register validation~
 
 
-day 3 - did some fixing and launched my register route
+Day 3 - did some fixing and launched my register route
 
 includes 3 stages :
 
