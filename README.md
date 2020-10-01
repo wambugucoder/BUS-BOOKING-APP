@@ -24,4 +24,4 @@ stage 1 -validate core fields
 stage 2 -validate address fields 
 
 
-stage 3 -register users with clean credentials
+stage 3 -register users with clean credentials.
