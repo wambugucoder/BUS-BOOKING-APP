@@ -14,13 +14,14 @@
 ~Day 2 -Start first phase of routing -- Register validation~
 
 
-day 3 - did some fixing and launched my register route
+Day 3 - did some fixing and launched my register route
 
-includes 3 stages
+includes 3 stages :
 
 
 stage 1 -validate core fields 
 
 stage 2 -validate address fields 
 
-stage 3 -register users with clean credentials
+
+stage 3 -register users with clean credentials.
