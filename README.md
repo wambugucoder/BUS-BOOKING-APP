@@ -28,3 +28,8 @@ stage 3 -register users with clean credentials.
 
 
 day 4-- Done with auth
+
+--Took 2hrs most ,
+
+cant wait for monday
+//the real wrk begins
