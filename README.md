@@ -25,3 +25,6 @@ stage 2 -validate address fields
 
 
 stage 3 -register users with clean credentials.
+
+
+day 4-- Done with auth
