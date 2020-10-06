@@ -3,8 +3,12 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import passport from 'passport';
+import './auth/passport';
+
 // tslint:disable-next-line:import-name
 import userRoutes from './routes';
+// tslint:disable-next-line:no-var-requires
 
 dotenv.config();
 const app: express.Application = express();
