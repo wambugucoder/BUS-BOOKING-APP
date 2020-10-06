@@ -25,3 +25,11 @@ stage 2 -validate address fields
 
 
 stage 3 -register users with clean credentials.
+
+
+Day 4-- Done with auth
+
+--Took 2hrs most ,
+
+cant wait for monday
+//the real work begins
