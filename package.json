@@ -9,7 +9,9 @@
     "dev": "nodemon",
     "migrate-dev": " dotenv -e .env -- npx prisma migrate save --name DevMigration --experimental",
     "migrate-test": " dotenv -e .env -- npx prisma migrate save --name TestMigration --experimental",
-    "migrate-prod": " dotenv -e .env -- npx prisma migrate save --name ProductionMigration --experimental"
+    "migrate-prod": " dotenv -e .env -- npx prisma migrate save --name ProductionMigration --experimental",
+    "migrate-up": " dotenv -e .env -- npx prisma migrate up  --experimental",
+    "migrate-down": "dotenv -e .env -- npx prisma migrate down --experimental"
   },
   "repository": {
     "type": "git",

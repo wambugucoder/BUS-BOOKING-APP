@@ -1,7 +1,9 @@
 import * as express from 'express';
 import { getCache } from './cache/Cache';
 import { loginUser, registerUser } from './controller/AuthController';
-import { getAllUsers } from './controller/UserController';
+import {
+  deleteAccount, getAllUsers,
+  getUserById, updateProfile } from './controller/UserController';
 import passport from 'passport';
 import {
   checkEmailAndPassword, checkIfEmailExists, validateAddress,
@@ -32,7 +34,22 @@ Stage 2 - if stage 1= success, retrieve data from cache if available
 Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
  */
 
-
-router.get('/users', passport.authenticate('jwt', { session: false }) , getCache, getAllUsers);
+router.get('/users', passport.authenticate('jwt', { session: false }), getCache, getAllUsers);
+/*
+Stage 1 - Authenticate the users token
+Stage 2 - if stage 1= success, retrieve data from cache if available
+Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
+ */
+router.get('/users/:id', passport.authenticate('jwt', { session: false }), getCache, getUserById);
+/*
+Stage 1 - Authenticate the users token
+Stage 2 - if stage 1= success, update users profile
+*/
+router.put('/users/:id', passport.authenticate('jwt', { session: false }), updateProfile);
+/*
+Stage 1 - Authenticate the users token
+Stage 2 - if stage 1= success, delete users profile
+*/
+router.delete('/users/:id', passport.authenticate('jwt', { session: false }), deleteAccount);
 
 export default router;
