@@ -36,7 +36,7 @@ cant wait for monday
 
 
 DAY 5 
-FINALLY AFTER A LONG DAY, WE LAUNCH OUR FIRST BUS
+FINALLY AFTER A LONG 4 DAYS, WE LAUNCH OUR FIRST BUS
 
 
 Done with usercontroller
