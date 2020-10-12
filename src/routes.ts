@@ -6,8 +6,10 @@ import {
   getUserById, updateProfile } from './controller/UserController';
 import passport from 'passport';
 import {
-  checkEmailAndPassword, checkIfEmailExists, validateAddress,
+  checkEmailAndPassword, checkIfBusExists, checkIfEmailExists, validateAddress,
+  validateBusCredentials,
   validateLogin, validateRegistration} from './controller/validationController';
+import { registerBus } from './controller/BusController';
 
 const router = express.Router();
 
@@ -51,5 +53,13 @@ Stage 1 - Authenticate the users token
 Stage 2 - if stage 1= success, delete users profile
 */
 router.delete('/users/:id', passport.authenticate('jwt', { session: false }), deleteAccount);
+/*
+Stage 1 - Authenticate Users token
+Stage 2 - Validate Bus input credentials
+Stage 3  -Check if a similar bus exists
+Stage 4 - if stage 3 =false, register that bus
+ */
+router.post('/bus', passport.authenticate('jwt', { session: false }),
+            validateBusCredentials , checkIfBusExists, registerBus);
 
 export default router;

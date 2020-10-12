@@ -5,6 +5,7 @@ import { Register } from '../validations/Register';
 import { PrismaClient } from '@prisma/client';
 import { Login } from '../validations/Login';
 import bcrypt = require ('bcrypt');
+import { Bus } from '../validations/Bus';
 
 const prisma = new PrismaClient();
 
@@ -67,6 +68,7 @@ export const validateLogin = async (req: Request, res: Response, next: NextFunct
   next();
 
 };
+
 export const checkEmailAndPassword = async (req: Request, res: Response, next: NextFunction) => {
   await prisma.user.findOne({ where: { email: req.body.email } })
      .then((found) => {
@@ -88,4 +90,40 @@ export const checkEmailAndPassword = async (req: Request, res: Response, next: N
     // tslint:disable-next-line:no-console
     console.log(err);
   });
+};
+export const validateBusCredentials = async (req: Request, res: Response, next: NextFunction) => {
+  const bus = new Bus();
+  bus.plates = req.body.plates;
+  bus.routes = req.body.routes;
+  bus.departureTime = req.body.departureTime;
+  bus.arrivalTime = req.body.arrivalTime;
+
+  const errors = await validate(bus, { skipMissingProperties: true });
+  if (errors.length > 0) {
+    let errorText = Array();
+    for (const errorItem of errors) {
+      errorText = errorText.concat(errorItem.constraints);
+    }
+    return res.status(400).json(errorText);
+  }
+  next();
+
+};
+
+export const checkIfBusExists = async (req: Request, res: Response, next: NextFunction) => {
+  await prisma.bus.findOne({
+    where: {
+      plates:req.body.plates,
+    },
+  })
+    .then((result) => {
+      if (result) {
+        return res.status(403).json({ bus: 'Bus Already exists' });
+      }
+      next();
+
+    }).catch((err) => {
+      return res.status(500).json({ bus: err });
+    });
+
 };
