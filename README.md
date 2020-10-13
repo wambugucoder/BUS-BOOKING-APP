@@ -29,10 +29,14 @@ stage 3 -register users with clean credentials.
 
 Day 4-- Done with auth
 
+Done with usercontroller
 --Took 2hrs most ,
 
 cant wait for monday
 //the real work begins
 
 
-Done with usercontroller
+DAY 5 
+FINALLY AFTER A LONG 4 DAYS, WE LAUNCH OUR FIRST BUS
+
+
