@@ -9,7 +9,7 @@ import {
   checkEmailAndPassword, checkIfBusExists, checkIfEmailExists, validateAddress,
   validateBusCredentials,
   validateLogin, validateRegistration} from './controller/validationController';
-import { registerBus } from './controller/BusController';
+import { getAllBuses, getBusById, registerBus } from './controller/BusController';
 
 const router = express.Router();
 
@@ -60,6 +60,18 @@ Stage 3  -Check if a similar bus exists
 Stage 4 - if stage 3 =false, register that bus
  */
 router.post('/bus', passport.authenticate('jwt', { session: false }),
-            validateBusCredentials , checkIfBusExists, registerBus);
+            validateBusCredentials, checkIfBusExists, registerBus);
+ /*
+ Stage 1 - Authenticate the users token
+Stage 2 - if stage 1= success, retrieve data from cache if available
+Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
+  */
+router.get('/buses', passport.authenticate('jwt', { session: false }), getCache, getAllBuses);
+ /*
+ Stage 1 - Authenticate the users token
+Stage 2 - if stage 1= success, retrieve data from cache if available
+Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
+  */
+router.get('/bus/:id', passport.authenticate('jwt', { session: false }), getCache, getBusById);
 
 export default router;

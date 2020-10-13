@@ -41,6 +41,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/passport": "^1.0.4",
     "@types/passport-jwt": "^3.0.3",
+    "@types/paypal-rest-sdk": "^1.7.5",
     "@types/redis": "^2.8.27",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.4",
@@ -63,6 +64,7 @@
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "paypal-rest-sdk": "^1.8.1",
     "redis": "^3.0.2"
   }
 }

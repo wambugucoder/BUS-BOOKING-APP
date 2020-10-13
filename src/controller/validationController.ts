@@ -45,11 +45,19 @@ export const validateAddress = async (req: Request, res: Response, next: NextFun
 };
 
 export const checkIfEmailExists = async (req: Request, res: Response, next: NextFunction) => {
-  const exists = prisma.user.findOne({ where:{ email:req.body.email } });
-  if (exists) {
-    return res.status(400).json({ email:'Email Already exists' });
-  }
-  next();
+  await prisma.user.findOne({ where:{ email:req.body.email } })
+  .then((exists) => {
+    if (exists) {
+      return res.status(400).json({ email:'Email Already exists' });
+    }
+    if (!exists) {
+      next();
+    }
+
+  }).catch((err) => {
+    return res.status(500).json({ message: err });
+  });
+
 };
 
 export const validateLogin = async (req: Request, res: Response, next: NextFunction) => {
@@ -97,6 +105,7 @@ export const validateBusCredentials = async (req: Request, res: Response, next: 
   bus.routes = req.body.routes;
   bus.departureTime = req.body.departureTime;
   bus.arrivalTime = req.body.arrivalTime;
+  bus.price = req.body.price;
 
   const errors = await validate(bus, { skipMissingProperties: true });
   if (errors.length > 0) {

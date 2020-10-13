@@ -1,7 +1,6 @@
 import { IsDate, IsDateString, IsDefined, Length, MinDate } from 'class-validator';
 import { IsAfterDate, IsBeforeDate } from 'class-validator-date';
 export class Bus {
- 
 
   @IsDefined({ message: 'Plates Not Defined' })
   @Length(6, 6, { message: 'Plates mst have a 6 characters' })
@@ -16,5 +15,8 @@ export class Bus {
 
   @IsDateString({ message: 'Should be a date' })
   @IsAfterDate('departureTime', { message: 'Arrival date has to be after departure' })
-    arrivalTime!: string;
+  arrivalTime!: string;
+
+  @IsDefined({ message: 'Price Not defined' })
+  price!: number;
 }
