@@ -5,7 +5,7 @@
 * Paypal integration - 
 * Passport jwt -Done
 * An invoice system-
-* Prisma -
+* Prisma - Done
 
 ~Day 1 - create server and setup stuff -- done~
 
