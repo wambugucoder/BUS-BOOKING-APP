@@ -2,7 +2,7 @@
 
 ## A bus booking app that uses the following technologies:
 * Redis - Done
-* Paypal integration - 
+* Paypal integration - Major focus
 * Passport jwt -Done
 * An invoice system-
 * Prisma - Done
