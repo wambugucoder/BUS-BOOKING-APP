@@ -67,7 +67,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
           payment_method: 'paypal',
         },
         redirect_urls: {
-          return_url: 'http://localhost:5000/api/v1/success',
+          return_url: 'http://localhost:5000/api/v1/success/',
           cancel_url: 'http://localhost:5000/cancel',
         },
         transactions: [{
@@ -108,22 +108,24 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
     });
 };
 export const getSuccess = async (req: Request, res: Response, next: NextFunction) => {
-  const payerId = req.params.PayerID!;
-  const paymentId = req.params.PaymentId!;
+
+  const payerId = req.query.PayerID as string;
+  const paymentId = req.query.paymentId as string;
 
   const execute: paypalRestSdk.payment.ExecuteRequest = {
-    payer_id:payerId,
+    payer_id: payerId ,
+
   };
-  
-  paypalRestSdk.payment.execute(paymentId, execute, (error, payment) => {
+
+  paypalRestSdk.payment.execute(paymentId , execute, (error, payment) => {
     if (error) {
       return res.status(400).json({ transaction: error });
 
     }
     if (payment) {
-      console.log(JSON.stringify(payment));
-        }
-    
-  });
 
+      return res.status(200).json(payment);
+    }
+
+  });
 };
