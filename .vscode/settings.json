@@ -5,6 +5,7 @@
         "addressid",
         "bprice",
         "confirmpassword",
+        "paypal",
         "postgres",
         "postgresql"
     ]

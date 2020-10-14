@@ -10,6 +10,7 @@ import {
   validateBusCredentials,
   validateLogin, validateRegistration} from './controller/validationController';
 import { getAllBuses, getBusById, registerBus } from './controller/BusController';
+import { checkIfThereIsSpace, checkIfUserBookedAlready, getSuccess, proceedToPayment } from './controller/Transactions';
 
 const router = express.Router();
 
@@ -73,5 +74,21 @@ Stage 2 - if stage 1= success, retrieve data from cache if available
 Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
   */
 router.get('/bus/:id', passport.authenticate('jwt', { session: false }), getCache, getBusById);
+/*
+ Stage 1 - Authenticate the users token
+ Stage 2- Check if user booked another bus
+ Stage 3-  If stage 2 = no ,check if there is an empty seat on the bus
+ Stage 4- if stage 3= true, Proceed to  checkout
+
+ */
+router.post('/pay/:uid/:bid', passport.authenticate('jwt', { session: false }),
+            checkIfUserBookedAlready, checkIfThereIsSpace, proceedToPayment);
+/*
+Stage 1 - retrieve query data from url use it to process payement
+Stage 2 - Grab transaction details and store them in DB
+Stage 3 - Find user where email in transaction equals email in userdb and update records
+<<<< WORKING UNDER AN ASSUMPTION THAT EMAIL USED TO REGISTER IS THE SAME EMAIL USED TO MAKE PAYMENTS >>>
+*/
+router.get('/success', getSuccess);
 
 export default router;
