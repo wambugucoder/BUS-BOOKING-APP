@@ -4,7 +4,7 @@
 * Redis - Done
 * Paypal integration - Major focus -And done super succesfull
 * Passport jwt -Done
-* An invoice system-NEXT UP
+* An invoice system-NEXT UP.
 * Prisma - Done
 
 ~Day 1 - create server and setup stuff -- done~
