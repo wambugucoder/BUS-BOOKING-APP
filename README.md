@@ -2,14 +2,14 @@
 
 ## A bus booking app that uses the following technologies:
 * Redis - Done
-* Paypal integration - Major focus
+* Paypal integration - Major focus -And done super succesfull
 * Passport jwt -Done
-* An invoice system-
+* An invoice system-NEXT UP.
 * Prisma - Done
 
 ~Day 1 - create server and setup stuff -- done~
 
-//its gonna take like 2 days most.
+//its gonna take like 2 days most
 
 ~Day 2 -Start first phase of routing -- Register validation~
 
@@ -21,7 +21,7 @@ includes 3 stages:
 
 stage 1 -validate core fields .
 
-stage 2 -validate address fields .
+stage 2 -validate address fields 
 
 
 stage 3 -register users with clean credentials.
