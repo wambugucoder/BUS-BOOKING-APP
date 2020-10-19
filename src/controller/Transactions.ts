@@ -32,6 +32,7 @@ export const checkIfUserBookedAlready = async (req: Request, res: Response, next
 
 export const checkIfThereIsSpace = async (req: Request, res: Response, next: NextFunction) => {
   const bid = parseInt(req.params.bid, 10);
+
   await prisma.bus.findOne({
     where: {
       id:bid,
@@ -55,6 +56,7 @@ export const checkIfThereIsSpace = async (req: Request, res: Response, next: Nex
 
 export const proceedToPayment = async (req: Request, res: Response, next: NextFunction) => {
   const bid = parseInt(req.params.bid, 10);
+  const uid = parseInt(req.params.uid, 10);
   await prisma.bus.findOne({
     where:{
       id:bid,
@@ -67,7 +69,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
           payment_method: 'paypal',
         },
         redirect_urls: {
-          return_url: 'http://localhost:5000/api/v1/success/',
+          return_url: `http://localhost:5000/api/v1/success/${uid}/${bid}`,
           cancel_url: 'http://localhost:5000/cancel',
         },
         transactions: [{
@@ -95,7 +97,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
         if (payment) {
           for (const element of payment.links!) {
             if (element.rel === 'approval_url') {
-              console.log(element.href);
+
               res.redirect(element.href);
             }
 
@@ -124,8 +126,58 @@ export const getSuccess = async (req: Request, res: Response, next: NextFunction
     }
     if (payment) {
 
-      return res.status(200).json(payment);
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < payment.transactions.length; i++) {
+        if (payment.state === 'approved') {
+          const total = payment.transactions[i].amount.total;
+          prisma.transaction.create({
+            data: {
+              cart:payment.id!,
+              status: payment.state,
+              amount: parseInt(total, 10),
+              createdAt:new Date(payment.create_time!),
+              updatedAt: new Date(payment.update_time!),
+              user: {
+                connect:{
+                  id:parseInt(req.params.uid, 10),
+                },
+              },
+
+            },
+          })
+          .then((result) => {
+            next();
+          }).catch((err) => {
+            return res.status(500).json({ transaction:err });
+          });
+        }
+
+      }
+
     }
 
+  });
+};
+
+export const bookUser = async (req: Request, res: Response, next: NextFunction) => {
+  const bid = parseInt(req.params.bid, 10);
+  const uid = parseInt(req.params.uid, 10);
+  await prisma.user.update({
+    where: {
+      id:uid,
+    },
+    data: {
+      booked: true,
+      busBooked:{
+        connect:{
+          id:bid,
+        },
+      },
+    },
+  })
+  .then((result) => {
+    next();
+  }).catch((err) => {
+    return res.status(500).json({ transaction:err });
   });
 };

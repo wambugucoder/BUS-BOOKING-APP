@@ -10,7 +10,9 @@ import {
   validateBusCredentials,
   validateLogin, validateRegistration} from './controller/validationController';
 import { getAllBuses, getBusById, registerBus } from './controller/BusController';
-import { checkIfThereIsSpace, checkIfUserBookedAlready, getSuccess, proceedToPayment } from './controller/Transactions';
+import {
+  bookUser, checkIfThereIsSpace, checkIfUserBookedAlready,
+  getSuccess, proceedToPayment} from './controller/Transactions';
 
 const router = express.Router();
 
@@ -87,8 +89,8 @@ router.post('/pay/:uid/:bid', passport.authenticate('jwt', { session: false }),
 Stage 1 - retrieve query data from url use it to process payement
 Stage 2 - Grab transaction details and store them in DB
 Stage 3 - Find user where email in transaction equals email in userdb and update records
-<<<< WORKING UNDER AN ASSUMPTION THAT EMAIL USED TO REGISTER IS THE SAME EMAIL USED TO MAKE PAYMENTS >>>
+
 */
-router.get('/success', getSuccess);
+router.get('/success/:uid/:bid', getSuccess, bookUser);
 
 export default router;
