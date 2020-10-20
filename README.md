@@ -1,4 +1,4 @@
-# BUS-BOOKING-APP.
+# BUS-BOOKING-APP
 
 ## A bus booking app that uses the following technologies:
 * Redis - Done
