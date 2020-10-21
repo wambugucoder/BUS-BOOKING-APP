@@ -13,6 +13,7 @@ import { getAllBuses, getBusById, registerBus } from './controller/BusController
 import {
   bookUser, checkIfThereIsSpace, checkIfUserBookedAlready,
   getSuccess, proceedToPayment} from './controller/Transactions';
+import { sendInvoice } from './controller/EmailController';
 
 const router = express.Router();
 
@@ -91,6 +92,6 @@ Stage 2 - Grab transaction details and store them in DB
 Stage 3 - Find user where email in transaction equals email in userdb and update records
 
 */
-router.get('/success/:uid/:bid', getSuccess, bookUser);
+router.get('/success/:uid/:bid', getSuccess, bookUser, sendInvoice);
 
 export default router;

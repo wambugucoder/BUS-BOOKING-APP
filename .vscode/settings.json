@@ -5,6 +5,8 @@
         "addressid",
         "bprice",
         "confirmpassword",
+        "mailgen",
+        "outro",
         "paypal",
         "postgres",
         "postgresql"

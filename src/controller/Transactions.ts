@@ -70,7 +70,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
         },
         redirect_urls: {
           return_url: `http://localhost:5000/api/v1/success/${uid}/${bid}`,
-          cancel_url: 'http://localhost:5000/cancel',
+          cancel_url: `http://localhost:5000/api/v1/cancel//${uid}/${bid}`,
         },
         transactions: [{
           item_list: {
