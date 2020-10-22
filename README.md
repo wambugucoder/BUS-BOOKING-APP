@@ -6,7 +6,7 @@
 * Passport jwt -Done.
 * An invoice system-NEXT UP.
 * Prisma - Done.
-tests.
+tests.with mocha
 ~Day 1 - create server and setup stuff -- done~
 
 //its gonna take like 2 days most.
