@@ -10,8 +10,8 @@ const transporter = nodemailer.createTransport({
   port: 2525,
   secure: false, // true for 465, false for other ports
   auth: {
-    user: process.env.MAIL_USER!, // generated ethereal user
-    pass: process.env.MAIL_PASS!, // generated ethereal password
+    user: process.env.MAIL_USER!,
+    pass: process.env.MAIL_PASS!,
   },
   debug: true, // show debug output
   logger: true, // log information in console
@@ -81,7 +81,7 @@ export const sendInvoice = async(req: Request, res: Response, next: NextFunction
           return res.status(400).json({ email: err });
         }
         if (info) {
-          res.redirect('http:localhost:3000/dashboard');
+          res.redirect('http://localhost:3000/dashboard');
         }
 
       });

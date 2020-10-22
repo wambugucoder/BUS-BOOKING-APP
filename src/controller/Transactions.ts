@@ -97,7 +97,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
         if (payment) {
           for (const element of payment.links!) {
             if (element.rel === 'approval_url') {
-
+              console.log(element.href);
               res.redirect(element.href);
             }
 
@@ -180,4 +180,8 @@ export const bookUser = async (req: Request, res: Response, next: NextFunction) 
   }).catch((err) => {
     return res.status(500).json({ transaction:err });
   });
+};
+
+export const cancelPayment = async (req: Request, res: Response, next: NextFunction) => {
+  res.redirect(400, 'http://localhost:3000/cancel');
 };

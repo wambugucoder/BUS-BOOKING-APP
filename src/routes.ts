@@ -11,7 +11,7 @@ import {
   validateLogin, validateRegistration} from './controller/validationController';
 import { getAllBuses, getBusById, registerBus } from './controller/BusController';
 import {
-  bookUser, checkIfThereIsSpace, checkIfUserBookedAlready,
+  bookUser, cancelPayment, checkIfThereIsSpace, checkIfUserBookedAlready,
   getSuccess, proceedToPayment} from './controller/Transactions';
 import { sendInvoice } from './controller/EmailController';
 
@@ -93,5 +93,10 @@ Stage 3 - Find user where email in transaction equals email in userdb and update
 
 */
 router.get('/success/:uid/:bid', getSuccess, bookUser, sendInvoice);
+
+/*
+Sage 1- Redirect users when they cancel Transaction
+ */
+router.get('/cancel/:uid/:bid', cancelPayment);
 
 export default router;
