@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import compression from 'compression';
 import passport from 'passport';
 import './auth/passport';
 
@@ -29,6 +30,9 @@ app.use(cors());
 
 // HELMET
 app.use(helmet());
+
+// COMPRESSION
+app.use(compression());
 
 // ROUTES MIDDLEWARE
 app.use('/api/v1', userRoutes);

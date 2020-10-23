@@ -97,8 +97,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
         if (payment) {
           for (const element of payment.links!) {
             if (element.rel === 'approval_url') {
-              console.log(element.href);
-              res.redirect(element.href);
+             res.redirect(element.href);
             }
 
           }

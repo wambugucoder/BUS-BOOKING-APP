@@ -26,10 +26,9 @@ export const registerUser = async (req: Request, res: Response) => {
         },
       })
           .then((register) => {
-            if (register) {
-              return res.status(201).json(register);
-            }
-            return res.status(400).json({ message:'Please check your inputs again' });
+
+            return res.status(201).json(register);
+
           })
               .catch((err) => {
                 return res.status(500).json(err);
@@ -56,10 +55,13 @@ export const loginUser = async (req: Request, res: Response) => {
         { expiresIn: expires }, (err, encoded) => {
           if (encoded) {
             res.status(200).json({
-              token: ` ${encoded}`,
+              token:`${encoded}`,
             });
           }
-         return res.status(400).json({ message: 'Client Side Error' });
+          if (err) {
+            return res.status(400).json({ message: 'Client Side Error' });
+          }
+        
 
         },
 
