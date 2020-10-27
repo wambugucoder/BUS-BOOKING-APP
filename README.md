@@ -1,7 +1,7 @@
 # BUS-BOOKING-APP
 
 ## A bus booking app that uses the following technologies:
-* Redis - Done
+* Redis - Done.
 * Paypal integration - Major focus -And done super succesfull
 * Passport jwt -Done.
 * An invoice system-NEXT UP.
