@@ -17,10 +17,11 @@ email           String     @unique
 password        String
 booked          Boolean    @default(false)
 role            Role       @default(PASSENGER)
-address         Address
+address         Address   @relation(fields: [addressId],references:[id])
 busBooked       Bus ?       @relation(fields: [busId],references:[id])
 transactions    Transaction[]
 busId           Int?
+addressId       Int
 createdAt       DateTime   @default(now())
 updatedAt       DateTime   @updatedAt  
 
@@ -30,8 +31,7 @@ model Address{
 id           Int         @id @default(autoincrement())  
 county       String
 city         String
-user         User        @relation(fields: [userId],references:[id])
-userId       Int         @unique
+user         User        
 createdAt    DateTime     @default(now())
 updatedAt    DateTime      @updatedAt  
 
@@ -50,8 +50,8 @@ updatedAt       DateTime   @updatedAt
 
 }
 model Transaction{
-id             Int       @id 
-cart           Int       @unique
+id             Int     @id @default(autoincrement())
+cart           String      @unique
 status         String
 amount         Int
 user           User      @relation(fields: [userId],references:[id])

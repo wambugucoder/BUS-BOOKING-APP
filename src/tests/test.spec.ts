@@ -2,16 +2,17 @@ import chai from 'chai';
 import { PrismaClient } from '@prisma/client';
 import { agent as request } from 'supertest';
 import { after, before } from 'mocha';
+import jsonwebtoken from 'jsonwebtoken';
 import server from '../server';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const expect = chai.expect;
 const testServer = request(server);
 const prisma = new PrismaClient();
-let token: string;
-let userId: number;
-let busId: number;
+const payload = {
+  email: 'user@user.com',
+
+};
+const token = jsonwebtoken.sign(payload, process.env.SECRET_OR_KEY!, { expiresIn: 94608000 });
 
 describe('INITIALIZE TEST', () => {
 
@@ -23,11 +24,13 @@ describe('INITIALIZE TEST', () => {
     });
   });
 
-  it('Confirms end of Tests', () => {
-    after((done) => {
-        // tslint:disable-next-line:no-console
-      console.log('Done with Test...');
-      done();
+  it('Cleans up DB', () => {
+    // tslint:disable-next-line: ter-prefer-arrow-callback
+    after(async function(){
+      await prisma.bus.deleteMany({});
+      await prisma.user.deleteMany({});
+      await prisma.address.deleteMany({});
+     
     });
 
   });
@@ -36,9 +39,10 @@ describe('INITIALIZE TEST', () => {
 
 describe('USER API TESTS', () => {
   describe('A', () => {
-    it('Doesnt Register User with errors', () => {
+    // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Doesnt Register User with errors', async function () {
 
-       return testServer.post('/api/v1/register')
+      const res = await testServer.post('/api/v1/register')
         .send({
           username: 'user',
           email: 'email@',
@@ -46,18 +50,16 @@ describe('USER API TESTS', () => {
           confirmpassword:'123',
           city:'abc',
           county:'cde',
-        })
-        
-        .then((res) => {
-          expect(res.status).to.equal(400);
-
         });
+      expect(res.status).to.equal(400);
+
     });
 
   });
-  describe.only('B', () => {
-    it('Registers a user with correct credentials',  (done) => {
-    return testServer.post('/api/v1/register')
+  describe('B', () => {
+    // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Registers a user with correct credentials', async function () {
+      const res = await testServer.post('/api/v1/register')
         .send({
           username: 'username',
           email: 'user@user.com',
@@ -65,134 +67,130 @@ describe('USER API TESTS', () => {
           confirmpassword: '123456',
           city: 'abcdff',
           county: 'cdeff',
-        })
-        .expect(201)
-        .then((response) => {
-          // tslint:disable-next-line: no-unused-expression
-          expect(response.body).not.to.be.empty;
-          
         });
-         
+      expect(res.status).to.equal(201);
 
     });
   });
   describe('C', () => {
-    it('Doesnt Log in with incorrect credentials', async(done) => {
-     
-      return testServer.post('/api/v1/login')
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Doesnt Log in with incorrect credentials', async function () {
+
+      const res = await testServer.post('/api/v1/login')
         .send({
           email:'user@mail.com',
           password:'123456',
-        })
-        .then((res) => {
-          expect(res.status).to.be.equal(400);
-
         });
+
+      expect(res.status).to.be.equal(404);
 
     });
 
   });
   describe('D', () => {
-    it('Produce Token after correct Login', async(done) => {
-      
-      return testServer.post('/api/v1/login')
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Produce Token after correct Login', async function () {
+
+      const res = await testServer.post('/api/v1/login')
         .send({
           email:'user@user.com',
           password:'123456',
-        })
-        .then((res) => {
-          token = res.body.token;
-          expect(res.status).to.be.equal(200);
-          expect(res.body).to.have.property('token');
-
         });
+
+      expect(res.status).to.be.equal(200);
+      expect(res.body).to.have.property('token');
 
     });
   });
-  describe('E', () => {
-    it('Fetches UserId', async(done) => {
-      return prisma.user.findOne({
-        where: {
-          email:'user@user.com',
-        },
-      })
-        .then((res) => {
-          userId = res!.id;
 
-        })
-        .catch((err) => {
-          throw err;
-        });
-
-    });
-  });
   describe('F', () => {
-    it('Retrieves All user data', async (done) => {
-      return testServer.get('/api/v1/users')
-        .set({ Authorization:token })
-        .then((res) => {
-          expect(res.status).to.be.equal(200);
-          expect(res.body).to.be.an.instanceof(Array);
+    // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Retrieves All user data', async function () {
+      const res = await testServer.get('/api/v1/users')
+        .auth(token, { type: 'bearer' });
 
-        });
+      expect(res.status).to.be.equal(200);
+
     });
 
   });
   describe('G', () => {
-    it('Doesnt Retrieve userData', async () => {
-      return testServer.get('/api/v1/users')
-      .then((res) => {
-        expect(res.status).to.be.equal(401);
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Doesnt Retrieve userData', async function () {
+      const res = await testServer.get('/api/v1/users');
 
-      });
+      expect(res.status).to.be.equal(401);
 
     });
   });
   describe('H', () => {
-    it('Fetch user data by Id', async(done) => {
-      return testServer.get(`/api/v1/users/${userId}`)
-      .set({ Authorization:token })
-      .then((res) => {
-        expect(res.status).to.be.equal(200);
-        expect(res.body).to.be.an.instanceof(Array);
-
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Fetch user data by Id', async function () {
+      // tslint:disable-next-line: await-promise
+      const abc = await prisma.user.findOne({
+        where: {
+          email: 'user@user.com',
+        },
       });
+      const res = await testServer.get(`/api/v1/users/${abc?.id}`)
+      .auth(token, { type: 'bearer' });
+
+      expect(res.status).to.be.equal(200);
+
     });
 
   });
   describe('I', () => {
-    it('Fails to fetch user data by Id', async(done) => {
-      return testServer.get(`/api/v1/users/${userId}`)
-      .then((res) => {
-        expect(res.status).to.be.equal(401);
-
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Fails to fetch user data by Id', async function () {
+      // tslint:disable-next-line: await-promise
+      const abc = await prisma.user.findOne({
+        where: {
+          email: 'user@user.com',
+        },
       });
+      const res = await testServer.get(`/api/v1/users/${abc?.id}`);
+
+      expect(res.status).to.be.equal(401);
+
     });
   });
 
   describe('J', () => {
-    it('Updates User', async(done) => {
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Updates User', async function () {
+      // tslint:disable-next-line: await-promise
+      const abc = await prisma.user.findOne({
+        where: {
+          email: 'user@user.com',
+        },
+      });
       const updateData = {
+        county:'Kenya',
         city:'Nairobi',
       };
-      return testServer.put(`/api/v1/users/${userId}`)
-      .set({ Authorization:token })
-      .send(updateData)
-      .then((res) => {
-        expect(res.status).to.be.equal(201);
+      const res = await testServer.put(`/api/v1/users/${abc?.id}`)
+      .auth(token, { type: 'bearer' })
+      .send(updateData);
 
-      });
+      expect(res.status).to.be.equal(200);
 
     });
 
   });
   describe('K', () => {
-    it('Should Not update User', async (done) => {
-      return testServer.put(`/api/v1/users/${userId}`)
-      .then((res) => {
-        expect(res.status).to.be.equal(401);
-
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Should Not update User', async function () {
+      // tslint:disable-next-line: await-promise
+      const abc = await prisma.user.findOne({
+        where: {
+          email: 'user@user.com',
+        },
       });
+      const res = await testServer.put(`/api/v1/users/${abc?.id}`);
+
+      expect(res.status).to.be.equal(401);
+
     });
 
   });
@@ -201,77 +199,71 @@ describe('USER API TESTS', () => {
 
 describe('BUS AND BOOKING TEST', () => {
   describe('A', () => {
-    it('Registers A new Bus for transport', async(done) => {
-      const bDetails = {
-        plates: 'KDA001',
-        route: 'A-B',
-        price: 5,
-        departureTime: '2050-10-12 14:34:08.7',
-        arrivalTime: '2050-10-12 14:38:08.7',
-      };
-      return testServer.post('/api/v1/bus')
-      .set({ Authorization:token })
-      .send(bDetails)
-      .then((res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body).to.have.property('plates');
-        expect(res.body).to.have.property('routes');
-        expect(res.body).to.have.property('price');
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Registers A new Bus for transport', async function () {
 
+      const res = await testServer.post('/api/v1/bus')
+      .auth(token, { type: 'bearer' })
+      .send({
+        plates: 'KDA001',
+        routes: 'A-B',
+        price: 5,
+        departureTime: '2030-10-12T14:38:08.700Z',
+        arrivalTime: '2030-10-13T14:38:08.00Z',
       });
+
+      expect(res.status).to.equal(200);
 
     });
 
   });
   describe('B', () => {
-    it('Doesnt Register the new Bus', async(done) => {
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Doesnt Register the new Bus', async function () {
       const bDetails = {
         plates: 'KDA001',
-        route: 'A-B',
-        price: 5,
-        departureTime: '2050-10-12 14:34:08.7',
-        arrivalTime: '2050-10-12 14:38:08.7',
+        routes: 'A-B',
+        price: '5',
+        departureTime: '2022-10-1214:34:08.7',
+        arrivalTime: '2022-10-1214:38:08.7',
       };
-      return testServer.post('/api/v1/bus')
-      .send(bDetails)
-      .then((res) => {
-        expect(res.status).to.equal(401);
+      const res = await testServer.post('/api/v1/bus')
+      .send(bDetails);
 
-      });
+      expect(res.status).to.equal(401);
 
     });
   });
-  describe('C', () => {
-    it('Fetches BusId', async(done) => {
-      return prisma.bus.findOne({
+
+  describe('D', () => {
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Fetches Bus details by Id', async function () {
+      // tslint:disable-next-line: await-promise
+      const cde = await prisma.bus.findOne({
         where: {
           plates: 'KDA001',
         },
-      })
-        .then((res) => {
-          busId = res!.id;
-
-        });
-    });
-  });
-  describe('D', () => {
-    it('Fetches Bus details by Id', async(done) => {
-      return testServer.get(`/api/v1/bus/${busId}`)
-      .set({ Authorization:token })
-      .then((res) => {
-        expect(res.status).to.be.equal(200);
-        expect(res.body).to.be.an.instanceof(Array);
-
       });
+      const res = await testServer.get(`/api/v1/bus/${cde?.id}`)
+      .auth(token, { type: 'bearer' });
+
+      expect(res.status).to.be.equal(200);
+
     });
   });
   describe('E', () => {
-    it('Fails to fetch Bus Data', async(done) => {
-      return testServer.get(`/api/v1/bus/${busId}`)
-      .then((res) => {
-        expect(res.status).to.be.equal(401);
-        done();
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Fails to fetch Bus Data', async function () {
+       // tslint:disable-next-line: await-promise
+      const cde = await prisma.bus.findOne({
+        where: {
+          plates: 'KDA001',
+        },
       });
+      const res = await testServer.get(`/api/v1/bus/${cde?.id}`);
+
+      expect(res.status).to.be.equal(401);
+
     });
 
   });
@@ -279,42 +271,27 @@ describe('BUS AND BOOKING TEST', () => {
 
 describe('TRANSACTION TEST', () => {
   describe('A', () => {
-    it('Creates A payment instance', async(done) => {
-      return testServer.get(`/api/v1/pay/${userId}/${busId}`)
-      .set({ Authorization:token })
-      .then((res) => {
-        expect(res.redirect);
-
-      });
-
-    });
-
-  });
-
-});
-describe('CLEAN UP DB', () => {
-  describe('A', () => {
-    it('Deletes Current User', async(done) => {
-      return testServer.get(`/api/v1/users/${userId}`)
-      .set({ Authorization:token })
-      .then((res) => {
-        expect(res.status).to.be.equal(200);
-
-      });
-
-    });
-
-  });
-  describe('B', () => {
-    it('Deletes Current User', async(done) => {
-      return prisma.bus.delete({
+     // tslint:disable-next-line: ter-prefer-arrow-callback
+    it('Creates A payment instance', async function () {
+       // tslint:disable-next-line: await-promise
+      const cde = await prisma.bus.findOne({
         where: {
           plates: 'KDA001',
         },
-      })
-        .then(done);
+      });
+       // tslint:disable-next-line: await-promise
+      const abc = await prisma.user.findOne({
+        where: {
+          email: 'user@user.com',
+        },
+      });
+      const res = await testServer.get(`/api/v1/pay/${abc?.id}/${cde?.id}`)
+      .auth(token, { type: 'bearer' });
+
+      expect(res);
 
     });
+
   });
 
 });

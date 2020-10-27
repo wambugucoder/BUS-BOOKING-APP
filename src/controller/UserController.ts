@@ -56,6 +56,7 @@ export const updateProfile = async (req: Request, res: Response) => {
       userId:userid,
     },
     data: {
+
       county:req.body.county,
       city:req.body.city,
 
@@ -84,6 +85,7 @@ export const deleteAccount = async (req: Request, res: Response) => {
   })
 
     .catch((err) => {
+
       return res.status(500).json({ message: err });
     });
 

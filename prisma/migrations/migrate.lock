@@ -1,8 +1,7 @@
 # Prisma Migrate lockfile v1
 
-20200929091152-dev-migration
-20201007083301-dev-migration
-20201013081416-dev-migration
-20201015075528-dev-migration
-20201015093830-dev-migration
-20201015104259-dev-migration
+20201026124743-test-migration
+20201026130807-test-migration
+20201026131245-test-migration
+20201026133844-test-migration
+20201026134424-test-migration

@@ -17,8 +17,9 @@ email           String     @unique
 password        String
 booked          Boolean    @default(false)
 role            Role       @default(PASSENGER)
-address         Address
+address         Address  
 busBooked       Bus ?       @relation(fields: [busId],references:[id])
+transactions    Transaction[]
 busId           Int?
 createdAt       DateTime   @default(now())
 updatedAt       DateTime   @updatedAt  
@@ -29,7 +30,7 @@ model Address{
 id           Int         @id @default(autoincrement())  
 county       String
 city         String
-user         User        @relation(fields: [userId],references:[id])
+user         User        @relation(fields: [userId],references:[id])   
 userId       Int         @unique
 createdAt    DateTime     @default(now())
 updatedAt    DateTime      @updatedAt  
@@ -39,13 +40,26 @@ updatedAt    DateTime      @updatedAt
 model Bus{
 id              Int        @id @default(autoincrement())
 plates          String     @unique
-routes          String     
+routes          String  
+price           Int   
 departureTime   DateTime   
 arrivalTime     DateTime 
-price           Int
 passengers      User[]
 createdAt       DateTime   @default(now())
 updatedAt       DateTime   @updatedAt  
+
+}
+model Transaction{
+id             Int     @id @default(autoincrement())
+cart           String      @unique
+status         String
+amount         Int
+user           User      @relation(fields: [userId],references:[id])
+userId         Int        @unique
+createdAt       DateTime 
+updatedAt       DateTime
+
+
 
 }
 enum Role{

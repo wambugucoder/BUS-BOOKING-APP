@@ -6,6 +6,8 @@
         "addressid",
         "bprice",
         "confirmpassword",
+        "entrypoint",
+        "healthcheck",
         "mailgen",
         "outro",
         "paypal",
