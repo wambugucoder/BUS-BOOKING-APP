@@ -12,7 +12,7 @@ tests.
 
 //its gonna take like 2 days most.
 
-~Day 2 -Start first phase of routing -- Register validation~#
+~Day 2 -Start first phase of routing -- Register validation~
 
 
 Day 3 - did some fixing and launched my register route.
