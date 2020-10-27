@@ -6,6 +6,7 @@
 * Passport jwt -Done.
 * An invoice system-NEXT UP.
 * Prisma - Done.
+* Getting ready for ci
 tests.
 ~Day 1 - create server and setup stuff -- done~
 
