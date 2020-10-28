@@ -14,7 +14,7 @@ before_install:
 
 before_script:
    - docker-compose  build
-   - docker-compose up -d db 
+   - docker-compose up -d database
    - docker-compose up -d redis
    - docker-compose  ps
   
