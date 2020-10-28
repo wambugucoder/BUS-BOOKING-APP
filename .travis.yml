@@ -14,9 +14,10 @@ before_install:
 
 before_script:
    - docker-compose up --build
-    - docker-compose stop
+   
     
-
+script:
+   - docker-compose ps
 
 after_script:
   - docker-compose stop
