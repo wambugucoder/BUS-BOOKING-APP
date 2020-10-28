@@ -17,10 +17,10 @@ before_script:
 
 script:
   - docker-compose up -d db redis
-  - docker run it bus-server_server sh -c "cd /server;npm run migrate-test"
-  - docker run it bus-server_server sh -c "cd /server;npm run migrate-up"
-  - docker run it bus-server_server sh -c "cd /server;npm run test"
-  - docker run it bus-server_server sh -c "cd /server;exit"
+  - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
+  - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
+  - docker run -it bus-server_server sh -c "cd /server;npm run test"
+  - docker run -it bus-server_server sh -c "cd /server;exit"
 
 after_script:
   - docker-compose down
