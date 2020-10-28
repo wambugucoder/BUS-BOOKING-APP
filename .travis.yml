@@ -14,7 +14,7 @@ before_install:
 
 script:
    - docker-compose build
-   - docker-compose up -d
+   - docker-compose start
    - docker-compose ps
    - docker-compose stop
    
