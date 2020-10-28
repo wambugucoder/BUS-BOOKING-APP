@@ -18,7 +18,7 @@ before_script:
    - docker-compose up -d redis
    - docker-compose  ps
   
-script:
+    script:
    - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
    - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
    - docker run -it bus-server_server sh -c "cd /server;npm run test"
