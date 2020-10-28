@@ -12,11 +12,14 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-script:
-   - docker-compose build
-   - docker-compose up --no-start
-   - docker-compose start
-   - docker-compose ps
-   - docker-compose stop
+before_script:
+   - docker-compose  build
+   - docker-compose up -d db 
+   - docker-compose up -d redis
    
-
+ script:
+   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
+   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
+   - docker run -it bus-server_server sh -c "cd /server;npm run test"
+   - docker run -it bus-server_server sh -c "cd /server;exit"
+   - docker-compose stop
