@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 const redisport: string = process.env.PORT_REDIS!;
 
 const opts: redis.ClientOpts = {
-  
+  host: '172.17.0.1',
   port: parseInt(redisport, 10),
 
 };
