@@ -1,0 +1,19 @@
+remove all dangling images - 
+$ docker rmi -f $(docker images -f "dangling=true" -q)
+
+//TRAVIS-DOCKER INTEGRATION PROCESS
+
+--install docker-compose
+--build from docker-compose -- docker-compose --build
+--start  up two services---  docker-compose up -d db redis
+
+//DONE WITH DOCKER
+--migrate db
+   docker run it bus-server_server sh -c "cd /server;npm run migrate-test"
+    docker run it bus-server_server sh -c "cd /server;npm run migrate-up"
+     docker run it bus-server_server sh -c "cd /server;npm run test"
+  
+
+  //AFTER test
+   docker run it bus-server_server sh -c "cd /server;exit"
+   docker-compose stop
