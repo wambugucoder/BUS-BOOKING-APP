@@ -13,9 +13,10 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 before_script:
-  - docker-compose up -d db redis --build
+  - docker-compose --build
 
 script:
+  - docker-compose up -d db redis
   - docker run it bus-server_server sh -c "cd /server;npm run migrate-test"
   - docker run it bus-server_server sh -c "cd /server;npm run migrate-up"
   - docker run it bus-server_server sh -c "cd /server;npm run test"
