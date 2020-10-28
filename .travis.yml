@@ -13,14 +13,13 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 before_script:
-  - docker-compose  build
-  - docker-compose up -d db redis
+   - docker-compose  build
+   - docker-compose up -d db redis
+   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
+   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
+   - docker run -it bus-server_server sh -c "cd /server;npm run test"
+   - docker run -it bus-server_server sh -c "cd /server;exit"
 
-script:
-  - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
-  - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
-  - docker run -it bus-server_server sh -c "cd /server;npm run test"
-  - docker run -it bus-server_server sh -c "cd /server;exit"
 
 after_script:
   - docker-compose down
