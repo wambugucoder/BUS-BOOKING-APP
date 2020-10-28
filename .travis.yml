@@ -12,12 +12,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-before_script:
+script:
    - docker-compose up --build
    
-    
-script:
-   - docker-compose ps
 
-after_script:
-  - docker-compose stop
