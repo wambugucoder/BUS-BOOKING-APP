@@ -13,8 +13,8 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 before_script:
-   - docker-compose  build
-   - docker-compose up 
+   - docker-compose up --build
+   
     
 
 
