@@ -1,17 +1,18 @@
 # BUS-BOOKING-APP
 
 ## A bus booking app that uses the following technologies:
-* Redis - Done
+* Redis - Done.
 * Paypal integration - Major focus -And done super succesfull
 * Passport jwt -Done.
 * An invoice system-NEXT UP.
-* Prisma - Done.
+* Prisma - Done
+* Getting ready for ci
 tests.
 ~Day 1 - create server and setup stuff -- done~
 
 //its gonna take like 2 days most.
 
-~Day 2 -Start first phase of routing -- Register validation~#
+~Day 2 -Start first phase of routing -- Register validation~.
 
 
 Day 3 - did some fixing and launched my register route.
