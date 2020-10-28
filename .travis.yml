@@ -1,3 +1,26 @@
 sudo: required
 
+services:
+  - docker
 
+env:
+  DOCKER_COMPOSE_VERSION: 1.23.2
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+before_script:
+   - docker-compose  build
+   - docker-compose up -d database
+   - docker-compose up -d redis
+   - docker-compose  ps
+  
+script:
+   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
+   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
+   - docker run -it bus-server_server sh -c "cd /server;npm run test"
+   - docker run -it bus-server_server sh -c "cd /server;exit"
+   - docker-compose stop
