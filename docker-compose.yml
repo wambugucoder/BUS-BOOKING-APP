@@ -1,14 +1,20 @@
-version: "3"
+version: '3'
 services: 
     server:
         build: .
         ports: 
             - 5000:5000
-        depends_on: 
-            - db
+        links:
+            - database
             - redis
+            
+        depends_on: 
+            - database
+            - redis
+        networks:
+            - bus-network
 
-    db:
+    database:
         image: postgres:alpine
         environment:
             POSTGRES_PASSWORD: postgres
@@ -24,6 +30,8 @@ services:
             - ../data/pg-data:/var/libs/postgresql/data
         ports: 
             - 5432:5432
+        networks:
+            - bus-network
         
     redis:
         image: redis:alpine
@@ -34,4 +42,9 @@ services:
         entrypoint: redis-server --appendonly yes
         ports: 
             - 6379:6379
-     
+        networks:
+            - bus-network
+
+networks:
+    bus-network:
+         driver: bridge
