@@ -14,9 +14,9 @@ before_install:
 
 before_script:
   - docker-compose  build
+  - docker-compose up -d db redis
 
 script:
-  - docker-compose up -d db redis
   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
   - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
   - docker run -it bus-server_server sh -c "cd /server;npm run test"
