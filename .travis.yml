@@ -24,5 +24,6 @@ script:
    - docker run -it bus-server_server sh -c "cd /server;npm run test"
 
 after_success:
+    - docker run -it bus-server_server sh -c "cd /server;ls"
    - docker run -it bus-server_server sh -c "cd /server;npm run coverage"
   
