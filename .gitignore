@@ -1,7 +1,7 @@
 node_modules
 .nyc_output
 .vscode
-.localhost.json
+localhost.json
 Docker-cheatsheet.txt
 .dockerignore
 .github
