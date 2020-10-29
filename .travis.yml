@@ -26,5 +26,6 @@ script:
    
 
 after_success:
+  - docker-compose up -d server
    - docker exec -it bus-server_server sh -c "npm run coverage"
   
