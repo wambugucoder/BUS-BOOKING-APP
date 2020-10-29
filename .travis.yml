@@ -22,8 +22,8 @@ script:
    - docker run -it bus-server_server sh -c "cd /server;npm run migrate-test"
    - docker run -it bus-server_server sh -c "cd /server;npm run migrate-up"
    - docker run -it bus-server_server sh -c "cd /server;npm run test"
-   - docker run -it bus-server_server sh -c "cd /server;ls"
+   
 
 after_success:
-   - docker run -it bus-server_server sh -c "cd /server;npm run coverage"
+   - docker run -it bus-server_server sh -c "cd /server/.nyc_output;npm run coverage"
   
