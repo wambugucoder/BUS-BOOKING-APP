@@ -25,5 +25,4 @@ script:
 
 after_success:
    - docker run -it bus-server_server sh -c "cd /server;npm run coverage"
-   - docker run -it bus-server_server sh -c "cd /server;exit"
-   - docker-compose stop
+  
