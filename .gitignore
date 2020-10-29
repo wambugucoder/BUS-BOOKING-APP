@@ -4,3 +4,4 @@ node_modules
 .localhost.json
 Docker-cheatsheet.txt
 .dockerignore
+.github

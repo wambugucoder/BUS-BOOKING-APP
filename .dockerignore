@@ -3,3 +3,4 @@ node_modules
 .vscode
 .localhost.json
 Docker-cheatsheet.txt
+.github
