@@ -5,6 +5,7 @@ services:
 
 env:
   DOCKER_COMPOSE_VERSION: 1.23.2
+  COVERALLS_REPO_TOKEN:eIZT9Lv554M5h7TFCCTAGNoTpqMfxut60
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
