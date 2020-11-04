@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Navbar,Container} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button'
 import TextLoop from "react-text-loop";
+import {Link} from 'react-router-dom';
 import './Landing.css';
 
 class Landing extends Component {
@@ -34,12 +35,15 @@ renderTextLoop(){
 renderButton(){
   return(
     <div>
+    <Link to ="/login">
     <Button variant="primary" size="lg" active>
     Login
-  </Button>{' '}
+  </Button></Link>{' '}
+   <Link to ="/register">
   <Button variant="primary" size="lg" active>
     Register
   </Button>
+  </Link>
     </div>
   
   );
