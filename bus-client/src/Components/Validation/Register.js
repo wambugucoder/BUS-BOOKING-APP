@@ -9,6 +9,8 @@ data.username=!isEmpty(data.username)?data.username:"";
 data.email=!isEmpty(data.email)?data.email:"";
 data.password=!isEmpty(data.password)?data.password:"";
 data.confirmpassword=!isEmpty(data.confirmpassword)?data.confirmpassword:"";
+data.county=!isEmpty(data.county)?data.county:"";
+data.city=!isEmpty(data.city)?data.city:"";
 
 //STEP 2 VALIDATIONS
 
@@ -39,6 +41,14 @@ if (Validator.isEmpty(data.confirmpassword)) {
 }
 if (!Validator.equals(data.confirmpassword,data.password)) {
     errors.confirmpassword="Passwords Don't Match"
+}
+//COUNTY VALIDATION
+if (Validator.isEmpty(data.county)) {
+    errors.county="County Residence Is Required"
+}
+//CITY VALIDATION
+if (Validator.isEmpty(data.city)) {
+    errors.city="City Residence Is Required"
 }
 return({
     errors,

@@ -6,14 +6,16 @@
   "scripts": {
     "start": "dotenv -e .env -- ts-node src/index.ts",
     "devts": "tsnd --respawn src/index.ts",
-    "dev": "npx dotenv -e .env -- nodemon",
+    "server": "npx dotenv -e .env -- nodemon",
+    "client": "npm start --prefix bus-client",
     "test": "npx dotenv -e .env -- nyc  mocha --exit --recursive --timeout 55000 -r ts-node/register src/**/*.spec.ts",
     "migrate-dev": "npx dotenv -e .env -- npx prisma migrate save --name DevMigration --experimental",
     "migrate-test": "npx dotenv -e .env -- npx prisma migrate save --name TestMigration --experimental",
     "migrate-prod": "npx dotenv -e .env -- npx prisma migrate save --name ProductionMigration --experimental",
     "migrate-up": "npx dotenv -e .env -- npx prisma migrate up  --experimental",
     "migrate-down": "npx dotenv -e .env -- npx prisma migrate down --experimental",
-    "coverage": "npx dotenv -e .env -- nyc report --reporter=text-lcov | coveralls "
+    "coverage": "npx dotenv -e .env -- nyc report --reporter=text-lcov | coveralls ",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -51,6 +53,7 @@
     "@types/paypal-rest-sdk": "^1.7.5",
     "@types/redis": "^2.8.27",
     "@types/supertest": "^2.0.10",
+    "concurrently": "^5.3.0",
     "coveralls": "^3.1.0",
     "dotenv": "^8.2.0",
     "dotenv-cli": "^4.0.0",
