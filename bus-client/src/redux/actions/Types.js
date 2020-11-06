@@ -1,3 +1,4 @@
 export const IS_LOADING="IS_LOADING"
 export const REGISTER_USER="REGISTER_USER"
 export const GET_ERRORS ="GET_ERRORS"
+export const LOGIN_USER="LOGIN_USER"

@@ -7,3 +7,11 @@
     scroll-behavior: smooth;
    
 }
+
+.login{
+    margin-top: 4rem;
+    position: fixed;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}

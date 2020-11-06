@@ -1,11 +1,13 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { IS_LOADING, REGISTER_USER ,GET_ERRORS} from "../actions/Types";
+import { IS_LOADING, REGISTER_USER ,GET_ERRORS, LOGIN_USER} from "../actions/Types";
 
 const INITIAL_STATE = {
     isLoading:false,
     isRegistered:false,
     errors:false,
     errorMessage:{},
+    isAuthenticated:false,
+    user:{}
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -31,6 +33,14 @@ export default (state = INITIAL_STATE, action) => {
                         errors:true,
                         errorMessage:action.payload 
                      };
+                     case LOGIN_USER:
+                        return {
+                            ...state,
+                            isLoading:false,
+                            isAuthenticated:true,
+                            user:action.payload
+                         };
+                         
         default:
             return state;
     }

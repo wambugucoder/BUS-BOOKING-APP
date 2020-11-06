@@ -55,7 +55,7 @@ export const loginUser = async (req: Request, res: Response) => {
         { expiresIn: expires }, (err, encoded) => {
           if (encoded) {
             res.status(200).json({
-              token:`${encoded}`,
+              token:`Bearer ${encoded}`,
             });
           }
           if (err) {
