@@ -1,6 +1,6 @@
 
 # BUS BOOKING APP
-[![Build Status](https://travis-ci.com/wambugucoder/BUS-BOOKING-APP.svg?branch=master)](https://travis-ci.com/wambugucoder/BUS-BOOKING-APP)
+
 
   <h3 align="center">Bus Booking App</h3>
 
