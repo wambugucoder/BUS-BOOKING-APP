@@ -44,6 +44,7 @@ The project is based on  users getting to Book a bus for their destination where
 * [Prisma](https://www.prisma.io/) - ORM
 * [MailTrap](https://mailtrap.io/) -A fake SMTP server
 * [Travis](https://travis-ci.com/) - For CI/CD
+* [Redis](https://redis.io/) - For Cache Management
 
 
 
