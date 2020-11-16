@@ -127,12 +127,12 @@ export const checkIfBusExists = async (req: Request, res: Response, next: NextFu
   })
     .then((result) => {
       if (result) {
-        return res.status(403).json({ bus: 'Bus Already exists' });
+        return res.status(403).json({plates: 'Bus Already exists' });
       }
       next();
 
     }).catch((err) => {
-      return res.status(500).json({ bus: err });
+      return res.status(500).json({ plates: err });
     });
 
 };

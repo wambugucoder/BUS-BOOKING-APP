@@ -43,6 +43,7 @@ export const loginUser = async (req: Request, res: Response) => {
   await prisma.user.findOne({ where: { email: req.body.email } })
     .then((found) => {
       const payload = {
+		 id:found?.id,
         email: found?.email,
         role: found?.role,
         username:found?.username,

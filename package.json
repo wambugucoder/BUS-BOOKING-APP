@@ -27,7 +27,7 @@
     "redis",
     "cache",
     "invoice",
-    "receipt"
+    "receipts"
   ],
   "author": "Jos Wambugu",
   "license": "ISC",

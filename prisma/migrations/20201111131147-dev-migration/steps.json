@@ -1,0 +1,17 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Bus",
+      "field": "departureTime",
+      "type": "String"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Bus",
+      "field": "arrivalTime",
+      "type": "String"
+    }
+  ]
+}

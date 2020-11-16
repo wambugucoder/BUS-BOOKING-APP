@@ -9,14 +9,14 @@ export const registerBus = async (req: Request, res: Response) => {
     data: {
       plates: req.body.plates,
       routes: req.body.routes,
-      departureTime: req.body.departureTime,
-      arrivalTime:req.body.arrivalTime,
+      departureTime: (req.body.departureTime),
+      arrivalTime:(req.body.arrivalTime),
       price: bprice,
     },
   })
     .then((result) => {
       if (!result) {
-        return res.status(400).json({ bus: 'Check your details again' });
+        return res.status(400).json({ bus:'Check your details again' });
       }
       return res.status(200).json(result);
 
@@ -50,6 +50,9 @@ export const getBusById = async (req: Request, res: Response) => {
       where: {
         id:bid,
       },
+	  include:{
+		  passengers:true,
+	  }
     },
   )
     .then(async(result) => {

@@ -20,7 +20,7 @@ const router = express.Router();
 // AUTH ROUTES
 
 /*
-Stage 1 - validate core details,
+Stage 1 - validate core details
 Stage 2 - validate address fields,
 Stage 3 - check if email exists
 Stage 4  - if stage 1 ,2 & 3 ===success =>encrypt password and register user
@@ -42,13 +42,13 @@ Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
 
 router.get('/users', passport.authenticate('jwt', { session: false }), getCache, getAllUsers);
 /*
-Stage 1 - Authenticate the users token
+Stage 1 - Authenticate the users token.
 Stage 2 - if stage 1= success, retrieve data from cache if available
 Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
  */
 router.get('/users/:id', passport.authenticate('jwt', { session: false }), getCache, getUserById);
 /*
-Stage 1 - Authenticate the users token
+Stage 1 - Authenticate the users token,
 Stage 2 - if stage 1= success, update users profile
 */
 router.put('/users/:id', passport.authenticate('jwt', { session: false }), updateProfile);
@@ -66,7 +66,7 @@ Stage 4 - if stage 3 =false, register that bus
 router.post('/bus', passport.authenticate('jwt', { session: false }),
             validateBusCredentials, checkIfBusExists, registerBus);
  /*
- Stage 1 - Authenticate the users token
+ Stage 1 - Authenticate the users token.
 Stage 2 - if stage 1= success, retrieve data from cache if available
 Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
   */
@@ -78,7 +78,7 @@ Stage 3 - if stage 2 = failure,retrieve data from db and store in cache
   */
 router.get('/bus/:id', passport.authenticate('jwt', { session: false }), getCache, getBusById);
 /*
- Stage 1 - Authenticate the users token
+ Stage 1 - Authenticate the users token.
  Stage 2- Check if user booked another bus
  Stage 3-  If stage 2 = no ,check if there is an empty seat on the bus
  Stage 4- if stage 3= true, Proceed to  checkout

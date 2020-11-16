@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import validateLogin from '../Validation/Login';
 import {loginUser} from '../../redux/actions/Action';
+
 class Login extends Component {
   constructor(props) {
     super(props)

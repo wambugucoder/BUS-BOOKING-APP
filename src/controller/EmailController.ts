@@ -57,7 +57,7 @@ export const sendInvoice = async(req: Request, res: Response, next: NextFunction
 
           },
           action: {
-            instructions: 'You can check the status of your order and more in your dashboard:',
+            instructions: 'You can check the status of your order and More in your dashboard:',
             button: {
               color: '#3869D4',
               text: 'Go to App',
@@ -74,14 +74,14 @@ export const sendInvoice = async(req: Request, res: Response, next: NextFunction
         to: rs?.email, // list of receivers
         subject: 'Bus Booking Invoice', // Subject line
         text: textBody, // plain text body
-        html: emailBody, // html body
+        html: emailBody, // html body.
       };
       transporter.sendMail(mail, (err, info) => {
         if (err) {
           return res.status(400).json({ email: err });
         }
         if (info) {
-          res.redirect('http://localhost:3000/dashboard');
+          res.redirect('http://localhost:3000/success');
         }
 
       });

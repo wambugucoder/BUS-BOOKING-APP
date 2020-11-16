@@ -70,7 +70,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
         },
         redirect_urls: {
           return_url: `http://localhost:5000/api/v1/success/${uid}/${bid}`,
-          cancel_url: `http://localhost:5000/api/v1/cancel//${uid}/${bid}`,
+          cancel_url: `http://localhost:5000/api/v1/failure/${uid}/${bid}`,
         },
         transactions: [{
           item_list: {
@@ -97,7 +97,7 @@ export const proceedToPayment = async (req: Request, res: Response, next: NextFu
         if (payment) {
           for (const element of payment.links!) {
             if (element.rel === 'approval_url') {
-             res.redirect(element.href);
+             return res.status(200).json({link:element.href})
             }
 
           }
@@ -182,5 +182,5 @@ export const bookUser = async (req: Request, res: Response, next: NextFunction) 
 };
 
 export const cancelPayment = async (req: Request, res: Response, next: NextFunction) => {
-  res.redirect(400, 'http://localhost:3000/cancel');
+  res.redirect(400, 'http://localhost:3000/');
 };
