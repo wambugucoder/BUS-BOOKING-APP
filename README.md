@@ -85,20 +85,11 @@ npm run dev
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-   
-   ![Dashboard](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Dashboard.JPG)
-  
-
-   
-   ![Booking](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/BookingJPG)
-
-
-   ![Payment Confirmation](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Confirm.JPG)
-
-   ![User's PayPal Account](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Users-Account.JPG)
-
-   ![Generated Invoice](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Invoice.JPG)
+![Dashboard](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Dashboard.JPG)
+![Booking](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/BookingJPG)
+![Payment Confirmation](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Confirm.JPG)
+![User's PayPal Account](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Users-Account.JPG)
+![Generated Invoice](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Invoice.JPG)
 <!-- ROADMAP -->
 ## Roadmap
 
