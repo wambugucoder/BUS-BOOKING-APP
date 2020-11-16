@@ -31,7 +31,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Dashboard.JPG)
+![Dashboard](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Dashboard.JPG)
 
 The project is based on  users getting to Book a bus for their destination where they get to make payments via Paypal and receive an Invoice in their E-mails.
 
@@ -87,18 +87,18 @@ npm run dev
 ## Usage
 
    
-   [![Dashboard][product-screenshot]](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Dashboard.JPG)
+   ![Dashboard](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Dashboard.JPG)
   
 
    
-   [![Booking][product-screenshot]](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/BookingJPG)
+   ![Booking](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/BookingJPG)
 
 
-   [![Payment Confirmation][product-screenshot]](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Confirm.JPG)
+   ![Payment Confirmation](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Confirm.JPG)
 
-   [![User's PayPal Account][product-screenshot]](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Users-Account.JPG)
+   ![User's PayPal Account](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Users-Account.JPG)
 
-   [![Generated Invoice][product-screenshot]](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Invoice.JPG)
+   ![Generated Invoice](https://github.com/wambugucoder/BUS-BOOKING-APP/blob/master/screenshots/Invoice.JPG)
 <!-- ROADMAP -->
 ## Roadmap
 
