@@ -2,7 +2,7 @@
 # BUS BOOKING APP
 
 
-  <h3 align="center">Bus Booking App</h3>
+  <h3 align="center">Bus Booking App.</h3>
 
   <p align="center">
     A simple Bus booking App integrated with PayPal
