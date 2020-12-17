@@ -45,6 +45,7 @@ The project is based on  users getting to Book a bus for their destination where
 * [MailTrap](https://mailtrap.io/) -A fake SMTP server
 * [Travis](https://travis-ci.com/) - For CI/CD
 * [Redis](https://redis.io/) - For Cache Management
+* [Paypal](https://paypal.com/) - For Processing Payments
 
 
 
