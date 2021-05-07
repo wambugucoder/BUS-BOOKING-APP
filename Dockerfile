@@ -4,7 +4,7 @@ FROM node:16-alpine
 WORKDIR /server
 
 #copy package.json
-COPY package*.json ./ 
+COPY package*.json ./
 
 #Run npm install
 RUN npm install
@@ -21,5 +21,3 @@ EXPOSE 5000
 
 #start app
 CMD [ "npm","run","dev" ]
-
-
