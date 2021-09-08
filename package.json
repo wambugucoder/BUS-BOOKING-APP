@@ -85,7 +85,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "paypal-rest-sdk": "^1.8.1",
-    "redis": "^3.0.2",
+    "redis": "^3.1.1",
     "supertest": "^4.0.2"
   }
 }
