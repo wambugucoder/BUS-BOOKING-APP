@@ -25,7 +25,7 @@
     "react-text-loop": "^2.3.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "validator": "^13.1.17",
+    "validator": "13.7.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
