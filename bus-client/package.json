@@ -23,7 +23,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-text-loop": "^2.3.0",
-    "redux": "^4.0.5",
+    "redux": "4.2.0",
     "redux-thunk": "^2.3.0",
     "validator": "^13.1.17",
     "web-vitals": "^0.2.4"
