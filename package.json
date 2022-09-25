@@ -48,7 +48,7 @@
     "@types/mailgen": "^2.0.3",
     "@types/mocha": "^8.0.3",
     "@types/nodemailer": "^6.4.0",
-    "@types/passport": "^1.0.4",
+    "@types/passport": "1.0.11",
     "@types/passport-jwt": "^3.0.3",
     "@types/paypal-rest-sdk": "^1.7.5",
     "@types/redis": "^2.8.27",
